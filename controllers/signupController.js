@@ -1,19 +1,25 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { User } from "../models/User.js";
+import { USERROLE } from "../config/roles.js";
+import { UserAuth } from "../models/UserAuth.js";
 
-export const handleNewUser = async (req, res) => {
+export const handleSignup = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password)
-    return res.status(400).send("Email or password missing");
+    return res.status(400).send("Username or password missing");
 
-  const isDuplicate = await User.findOne({ username: username });
-
+  const isDuplicate = await UserAuth.findOne({ username: username });
   if (isDuplicate) return res.sendStatus(409);
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = await User.create({ username, password: hashedPassword });
+
+  const newUser = await UserAuth.create({
+    username,
+    password: hashedPassword,
+    roles: [USERROLE],
+  });
+
   res.status(201).json({ success: `New user ${newUser} created!` });
   console.log(newUser);
 };
