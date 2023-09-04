@@ -9,6 +9,7 @@ import { loginRouter } from "./routes/login.js";
 import dotenv from "dotenv";
 import { verifyJWT } from "./middleware/verifyJWT.js";
 import { users } from "./services/users.js";
+import { refreshTokenRouter } from "./routes/refreshToken.js";
 dotenv.config();
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(cookieParser());
 // routes that don't require authentication
 app.use(signupRouter);
 app.use(loginRouter);
+app.use(refreshTokenRouter);
 
 app.use(verifyJWT);
 //routes that require authentication

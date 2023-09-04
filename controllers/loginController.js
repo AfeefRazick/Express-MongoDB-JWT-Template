@@ -20,7 +20,7 @@ export const handleLogin = async (req, res) => {
         userInfo: { username: userFromDB.username, roles: userFromDB.roles },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+      { expiresIn: "15s" }
     );
 
     const refreshToken = jwt.sign(
@@ -28,7 +28,7 @@ export const handleLogin = async (req, res) => {
         username: userFromDB.username,
       },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: 60 }
+      { expiresIn: 600 }
     );
     userFromDB.refreshToken = refreshToken;
     userFromDB.save();
