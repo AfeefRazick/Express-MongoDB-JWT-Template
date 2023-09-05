@@ -28,7 +28,7 @@ export const handleLogin = async (req, res) => {
         username: userFromDB.username,
       },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: 600 }
+      { expiresIn: 30 }
     );
     userFromDB.refreshToken = refreshToken;
     userFromDB.save();

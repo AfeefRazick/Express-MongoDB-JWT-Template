@@ -18,6 +18,10 @@ export const handleRefreshToken = async (req, res) => {
       { expiresIn: 15 }
     );
     // console.log(jwt.decode(accessToken));
-    res.json({ accessToken });
+    res.json({
+      accessToken,
+      username: userFromDB.username,
+      roles: userFromDB.roles,
+    });
   });
 };
