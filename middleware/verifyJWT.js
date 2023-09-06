@@ -10,7 +10,7 @@ export const verifyJWT = (req, res, next) => {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) return res.sendStatus(403);
 
-    res.locals.user = decoded.userInfo.username;
+    res.locals.username = decoded.userInfo.username;
     res.locals.roles = decoded.userInfo.roles;
     console.log(res.locals);
     next();

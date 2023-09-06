@@ -3,7 +3,6 @@ import { UserAuth } from "../models/UserAuth.js";
 
 export const handleRefreshToken = async (req, res) => {
   const refreshToken = req?.cookies?.refreshToken;
-  // console.log(refreshToken, "the cookie");
   if (!refreshToken) return res.sendStatus(401);
 
   const userFromDB = await UserAuth.findOne({ refreshToken: refreshToken });
@@ -17,7 +16,7 @@ export const handleRefreshToken = async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: 15 }
     );
-    // console.log(jwt.decode(accessToken));
+
     res.json({
       accessToken,
       username: userFromDB.username,

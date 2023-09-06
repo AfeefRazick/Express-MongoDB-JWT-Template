@@ -21,5 +21,4 @@ export const handleSignup = async (req, res) => {
   });
 
   res.status(201).json({ success: `New user ${newUser} created!` });
-  console.log(newUser);
 };

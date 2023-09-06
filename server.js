@@ -11,6 +11,8 @@ import { verifyJWT } from "./middleware/verifyJWT.js";
 import { users } from "./services/users.js";
 import { refreshTokenRouter } from "./routes/refreshToken.js";
 import { logoutRouter } from "./routes/logout.js";
+import { user } from "./services/user.js";
+import { makeAdminRouter } from "./services/makeAdmin.js";
 dotenv.config();
 
 const app = express();
@@ -28,7 +30,9 @@ app.use(logoutRouter);
 
 app.use(verifyJWT);
 //routes that require authentication
+app.use(user);
 app.use(users);
+app.use(makeAdminRouter);
 
 const PORT = process.env.PORT || 3500;
 
