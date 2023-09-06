@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { UserAuth } from "../models/UserAuth.js";
 
+// on login returns an accessToken and refreshToken to client and saves refreshToken to database
 export const handleLogin = async (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body);
+
   if (!username || !password)
     return res.status(400).send("Username or password missing");
 
@@ -44,8 +45,5 @@ export const handleLogin = async (req, res) => {
       username: userFromDB.username,
       roles: userFromDB.roles,
     });
-
-    console.log(jwt.decode(accessToken));
-    console.log(jwt.decode(refreshToken));
   }
 };

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { UserAuth } from "../models/UserAuth.js";
 
+// issues new accessToken using refreshToken sent from client
 export const handleRefreshToken = async (req, res) => {
   const refreshToken = req?.cookies?.refreshToken;
   if (!refreshToken) return res.sendStatus(401);

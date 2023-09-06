@@ -1,5 +1,7 @@
 import { UserAuth } from "../models/UserAuth.js";
 
+// removes refresh token from database and clears refreshToken cookie from client
+// jwt accessToken should be cleared from client side
 export const handleLogout = async (req, res) => {
   const refreshToken = req?.cookies?.refreshToken;
   if (!refreshToken) return res.sendStatus(204);

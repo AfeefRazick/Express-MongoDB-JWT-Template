@@ -1,3 +1,4 @@
+// verifys if user is allowed to access route based on their role
 export const verifyRoles = (allowedRoles) => {
   return (req, res, next) => {
     const userRoles = res?.locals?.roles;

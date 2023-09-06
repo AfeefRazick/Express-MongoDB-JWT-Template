@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { USERROLE } from "../config/roles.js";
 import { UserAuth } from "../models/UserAuth.js";
 
+//  creates a  user account in database
 export const handleSignup = async (req, res) => {
   const { username, password } = req.body;
 
